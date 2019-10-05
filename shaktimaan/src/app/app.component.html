@@ -1,2 +1,39 @@
 JS eval skdash
 <app-kapala></app-kapala>
+{{sm()}}
+{{myage}}
+<input [type]="stringType" [value]="myage" [ngClass]="ngClassObj" [class.mynewclass]="show" [ngStyle]="ngStyleObj"/>
+<button (click)="someMethod()">Mybutton</button>
+<table border="1" *ngIf="show">
+    <tbody>
+        <tr *ngFor="let user of userList;let i=index">
+            <td>{{i+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.age}}</td>
+        </tr>
+    </tbody>
+</table>\
+
+===============================================================================================
+<ng-template [ngIf]="show">
+    <table border="1">
+        <tbody>
+            <ng-template ngFor let-user [ngForOf]="userList" let-i="index" [ngForTrackBy]="mytract">
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.age}}</td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+</ng-template>
+
+
+<div [ngSwitch]="myage">
+    <!-- the same view can be shown in more than one case -->
+    <span *ngSwitchCase="5">fffff.</span>
+    <span *ngSwitchCase="10">this valie us 10</span>
+    <!--default case when there are no matches -->
+    <span *ngSwitchDefault>...</span>
+</div>
