@@ -26,7 +26,7 @@ export class AppComponent {
     { name: 'manoj', age: 15 },
   ];
   mytract(val, index) {
-    console.log(val, index);
+    // console.log(val, index);
   }
   someMethod() {
     this.show = !this.show;

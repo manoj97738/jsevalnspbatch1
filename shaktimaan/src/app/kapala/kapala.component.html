@@ -11,3 +11,42 @@
 <h2>{{newDate | date:'MMMM - dd, yyyy'}}</h2>
 <h2>{{10| mycustompipe:5}}</h2>
 <h2>{{mySal2}}</h2>
+<form [formGroup]="registerationForm">
+    <input type="text" formControlName="name" />
+    {{name.errors | json}}
+    <span *ngIf="name.errors">
+        <span *ngIf="name.errors.required">
+            this field is required
+        </span>
+    </span>
+    <input type="text" formControlName="email" />
+    <div formGroupName="address">
+        <input type="text" formControlName="line1" />
+        <app-form-error [controlInstance]="line1"></app-form-error>
+        <input type="text" formControlName="line2" />
+        <div formGroupName="line3">
+            <input type="text" formControlName="pincode" />
+            <input type="text" formControlName="state" />
+        </div>
+    </div>
+    <div formArrayName="phone">
+        <button type="button" (click)="addMoreButton()">Add more phone</button>
+        <br />
+        <span *ngFor="let cont of phone.controls;let i=index;">
+            <input type="text" [formControlName]="i" /> <button type="button" (click)="del(i)">delet
+                phone</button>
+            <app-form-error [controlInstance]='cont'></app-form-error>
+            <br />
+        </span>
+    </div>
+    <div formArrayName="bankAccount">
+        <button type="button" (click)="addMoreButtonAddress()">Add more Address</button>
+        <br />
+        <span *ngFor="let cont of bankAccount.controls;let i=index;" [formGroupName]="i">
+            <input type="text" formControlName="name" />
+            <input type="text" formControlName="pincode" /> <button type="button" (click)="delForm(i)">delet
+                phone</button><br />
+        </span>
+    </div>
+    <button type="button" (click)="onClick()">Submit</button>
+</form>
